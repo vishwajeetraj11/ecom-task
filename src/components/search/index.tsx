@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import useProductStore from "../../stores/productStore";
+import searchStyles from "./search.module.scss";
+import classNames from "classnames";
+import Suggestions from "../suggestions";
+
 interface Props {}
 
 const SearchInput = (props: Props) => {
-  const [search, setSearch] = useState("");
+  const { query, setQuery } = useProductStore();
   return (
-    <div>
-      <input value={search} onChange={(e) => setSearch(e.target.value)} />
-      <CiSearch />
+    <div className={searchStyles.searchContainer}>
+      <div className={searchStyles.search}>
+        <input
+          placeholder="Search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <CiSearch className="" size={30} />
+      </div>
+      <Suggestions />
     </div>
   );
 };

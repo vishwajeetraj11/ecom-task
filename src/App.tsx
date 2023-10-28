@@ -1,12 +1,18 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { CiSearch } from "react-icons/ci";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [search, setSearch] = useState("");
 
-  return <>Apples and rockets</>;
+  return (
+    <>
+      <div>
+        <input value={search} onChange={(e) => setSearch(e.target.value)} />
+        <CiSearch />
+      </div>
+    </>
+  );
 }
 
 export default App;

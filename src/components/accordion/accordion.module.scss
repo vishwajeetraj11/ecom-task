@@ -1,0 +1,20 @@
+.accordionContainer {}
+.accordionIcon {
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+}
+.accordionTitle {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.accordionContent {}
+.accordionHeader {
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

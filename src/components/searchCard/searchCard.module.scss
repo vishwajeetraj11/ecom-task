@@ -1,0 +1,58 @@
+.searchCardContainer {
+    cursor: pointer;
+    &:hover {
+        .searchCardViewProduct {
+            display: block;
+        }
+    }
+}
+.searchCardImage {
+    
+}
+.searchCardImageContainer {
+    position: relative;
+}
+
+.searchCardWishlist{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.searchCardPriceContainer{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.searchCardDiscountedPrice{
+    text-decoration: line-through;
+    color: #9ca3af;
+}
+.searchCardPrice{
+    color: #7c3aed;
+}
+.searchCardTitle{
+    margin: 10px 0;
+}
+.searchCardRatingContainer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.searchCardViewProduct {
+    background-color: #7c3aed90;
+    padding: 8px 16px;
+    width: 100%;
+    position: absolute;
+    display: none;
+    bottom: 4px;
+    p {
+        text-transform: capitalize;
+        font-size: 16px;
+        color: #ffffff;
+        text-align: center;
+    }
+}
+
+.searchCardRatingsCount {
+
+}

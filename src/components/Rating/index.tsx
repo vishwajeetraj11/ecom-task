@@ -1,4 +1,4 @@
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 type Props = {
   rating: number;
@@ -10,10 +10,10 @@ const Rating = ({ rating }: Props) => {
   return (
     <>
       {ratingsFilledStars.map((_) => (
-        <AiFillStar key={_} />
+        <AiFillStar fill="#fbbf24" key={_} />
       ))}
       {ratingsEmptyStars.map((_) => (
-        <AiOutlineStar key={_} />
+        <AiFillStar fill="#d1d5db" key={_} />
       ))}
     </>
   );

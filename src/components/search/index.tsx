@@ -17,7 +17,7 @@ const SearchInput = (props: Props) => {
         />
         <CiSearch className="" size={30} />
       </div>
-      <Suggestions />
+      {query && <Suggestions />}
     </div>
   );
 };

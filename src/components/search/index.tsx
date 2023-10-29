@@ -3,9 +3,7 @@ import useProductStore from "../../stores/productStore";
 import searchStyles from "./search.module.scss";
 import Suggestions from "../suggestions";
 
-interface Props {}
-
-const SearchInput = (props: Props) => {
+const SearchInput = () => {
   const {
     query,
     setQuery,

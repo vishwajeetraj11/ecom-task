@@ -3,8 +3,7 @@ import { latestTrendsImages, popularSuggestion } from "../../shared/faker";
 import { useEffect } from "react";
 import useProductStore from "../../stores/productStore";
 
-interface Props {}
-const Suggestions = (props: Props) => {
+const Suggestions = () => {
   const { setSuggestionVisible, onSearch, setQuery } = useProductStore();
 
   useEffect(() => {

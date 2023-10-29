@@ -1,20 +1,24 @@
 import suggestionStyles from "./suggestions.module.scss";
 import { latestTrendsImages, popularSuggestions } from "../../shared/faker";
 import { useEffect } from "react";
+import useProductStore from "../../stores/productStore";
 
 interface Props {}
 
 const Suggestions = (props: Props) => {
+  const { setSuggestionVisible } = useProductStore();
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const suggestionsContainer = document.getElementById(
         "searchSuggestionContainer"
       );
-      if (
-        suggestionsContainer &&
-        !suggestionsContainer.contains(event.target as Node)
-      ) {
-        suggestionsContainer.style.display = "none";
+      if (suggestionsContainer) {
+        if (!suggestionsContainer.contains(event.target as Node)) {
+          setSuggestionVisible(false);
+        } else {
+          setSuggestionVisible(true);
+        }
       }
     };
     document.addEventListener("mousedown", handleClickOutside);

@@ -2,13 +2,29 @@ import { CiSearch } from "react-icons/ci";
 import useProductStore from "../../stores/productStore";
 import searchStyles from "./search.module.scss";
 import Suggestions from "../suggestions";
-import { useState } from "react";
 
 interface Props {}
 
 const SearchInput = (props: Props) => {
-  const { query, setQuery, setSuggestionVisible, isSuggestionVisible } =
-    useProductStore();
+  const {
+    query,
+    setQuery,
+    setSuggestionVisible,
+    isSuggestionVisible,
+    setFilteredResults,
+    searchResults,
+  } = useProductStore();
+
+  const onSearch = () => {
+    const filteredResults = searchResults
+      .filter(
+        (result) =>
+          result.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+      .slice(0, 20);
+    setFilteredResults(filteredResults);
+    setSuggestionVisible(false);
+  };
 
   return (
     <div className={searchStyles.searchContainer}>
@@ -20,8 +36,17 @@ const SearchInput = (props: Props) => {
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSearch();
+            }
+          }}
         />
-        <CiSearch className="" size={30} />
+        <CiSearch
+          onClick={() => onSearch()}
+          className="cursor-pointer"
+          size={30}
+        />
       </div>
       {isSuggestionVisible && <Suggestions />}
     </div>

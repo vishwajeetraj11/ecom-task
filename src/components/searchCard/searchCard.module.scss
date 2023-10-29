@@ -1,14 +1,11 @@
 .searchCardContainer {
-    cursor: pointer;
     &:hover {
         .searchCardViewProduct {
             display: block;
         }
     }
 }
-.searchCardImage {
-    
-}
+
 .searchCardImageContainer {
     position: relative;
 }
@@ -44,6 +41,7 @@
     width: 100%;
     position: absolute;
     display: none;
+    cursor: pointer;
     bottom: 4px;
     p {
         text-transform: capitalize;
@@ -54,5 +52,6 @@
 }
 
 .searchCardRatingsCount {
-
+    margin-left: 8px;
+    font-weight: 100;
 }

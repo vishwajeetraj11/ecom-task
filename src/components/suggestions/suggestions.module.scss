@@ -10,6 +10,9 @@
     display: block;
     background-color: #ffffff;
     z-index: 9;
+    @media screen and (max-width: 500px) {
+       display: none;
+    }
 }
 .latestTrendsContainer {
     display: flex;
@@ -20,8 +23,14 @@
 
 .popularSuggestionsLabel {
     margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.latestTrendsLabel {
+      font-weight: 600;
 }
 
 .suggestionItem {
     margin-bottom: 10px;
+    cursor: pointer;
 }

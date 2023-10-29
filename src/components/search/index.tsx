@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import useProductStore from "../../stores/productStore";
 import searchStyles from "./search.module.scss";
-import classNames from "classnames";
 import Suggestions from "../suggestions";
 
 interface Props {}

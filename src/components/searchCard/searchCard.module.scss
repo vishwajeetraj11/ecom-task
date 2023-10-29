@@ -21,11 +21,11 @@
     gap: 8px;
 }
 .searchCardDiscountedPrice{
-    text-decoration: line-through;
-    color: #9ca3af;
+    color: #7c3aed;
 }
 .searchCardPrice{
-    color: #7c3aed;
+    text-decoration: line-through;
+    color: #9ca3af;
 }
 .searchCardTitle{
     margin: 10px 0;

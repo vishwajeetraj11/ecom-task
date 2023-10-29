@@ -60,10 +60,10 @@ const SearchCard = ({
       </div>
       <p className={searchCardStyles.searchCardTitle}>{title}</p>
       <div className={searchCardStyles.searchCardPriceContainer}>
+        <p className={searchCardStyles.searchCardPrice}>Rs {price}</p>
         <p className={searchCardStyles.searchCardDiscountedPrice}>
           Rs {discountedPrice}
         </p>
-        <p className={searchCardStyles.searchCardPrice}>Rs {price}</p>
       </div>
       <div className={searchCardStyles.searchCardRatingContainer}>
         <Rating rating={rating} />

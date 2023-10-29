@@ -1,15 +1,26 @@
 import React from "react";
 import searchFiltersStyles from "./searchFilters.module.scss";
 import Accordion from "../accordion";
+import { CheckboxWithLabel } from "../checkbox";
+import Rating from "../Rating";
 
-type Props = {};
-
-const SearchFilters = (props: Props) => {
+const SearchFilters = () => {
   const [accordionStates, setActiveAccordionStates] = React.useState({
     brand: true,
     price: true,
     rating: true,
   });
+
+  const brandFilters = [{ name: "mango" }, { name: "h&m" }];
+  const priceFilters = [{ name: "under 500" }, { name: "100 to 3000" }];
+  const ratingFilters = [
+    { rating: <Rating rating={5} />, name: "rating-5-star" },
+    { rating: <Rating rating={4} />, name: "rating-4-star" },
+    { rating: <Rating rating={3} />, name: "rating-3-star" },
+    { rating: <Rating rating={2} />, name: "rating-2-star" },
+    { rating: <Rating rating={1} />, name: "rating-1-star" },
+  ];
+
   return (
     <div className={searchFiltersStyles.searchFiltersContainer}>
       <Accordion
@@ -19,10 +30,14 @@ const SearchFilters = (props: Props) => {
         title="brand"
         isOpen={accordionStates.brand}
       >
-        <input type="checkbox" name="brand" id="brand-mango" />
-        <label htmlFor="brand-mango">Mango</label>
-        <input type="checkbox" name="brand" id="brand-h&m" />
-        <label htmlFor="brand-h&m">H&M</label>
+        {brandFilters.map((brand) => (
+          <CheckboxWithLabel
+            key={brand.name}
+            id={`${"brand"}-${brand.name}`}
+            label={brand.name}
+            name="brand"
+          />
+        ))}
       </Accordion>
 
       <Accordion
@@ -32,10 +47,14 @@ const SearchFilters = (props: Props) => {
         title="price range"
         isOpen={accordionStates.price}
       >
-        <input type="checkbox" name="price" id="price-500" />
-        <label htmlFor="price-500">Under 500</label>
-        <input type="checkbox" name="price" id="price-3000" />
-        <label htmlFor="price-3000">100 To 3000</label>
+        {priceFilters.map((price) => (
+          <CheckboxWithLabel
+            key={price.name}
+            id={`${"price"}-${price.name}`}
+            label={price.name}
+            name="price"
+          />
+        ))}
       </Accordion>
 
       <Accordion
@@ -48,16 +67,14 @@ const SearchFilters = (props: Props) => {
         title="ratings"
         isOpen={accordionStates.rating}
       >
-        <input type="checkbox" name="prcie" id="rating-5-star" />
-        <label htmlFor="rating-5-star">5*</label>
-        <input type="checkbox" name="rating" id="rating-4-star" />
-        <label htmlFor="rating-4-star">4*</label>
-        <input type="checkbox" name="rating" id="rating-3-star" />
-        <label htmlFor="rating-3-star">3*</label>
-        <input type="checkbox" name="rating" id="rating-2-star" />
-        <label htmlFor="rating-2-star">2*</label>
-        <input type="checkbox" name="rating" id="rating-1-star" />
-        <label htmlFor="rating-1-star">1*</label>
+        {ratingFilters.map((rating) => (
+          <CheckboxWithLabel
+            name="rating"
+            key={rating.name}
+            label={rating.rating}
+            id={rating.name}
+          />
+        ))}
       </Accordion>
     </div>
   );

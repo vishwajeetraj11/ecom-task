@@ -1,12 +1,9 @@
-import React from "react";
 import searchResultsStyles from "./searchResults.module.scss";
 import SearchCard from "../searchCard";
 import { customFaker } from "../../shared/faker";
 
-type Props = {};
-
-const SearchResults = (props: Props) => {
-  const searchResults = [1, 2, 3, 4, 5, 6].map((result) => ({
+const SearchResults = () => {
+  const searchResults = [1, 2, 3, 4, 5, 6, 7, 8].map(() => ({
     title: customFaker.commerce.productName(),
     image: customFaker.image.urlLoremFlickr({
       category: "fashion",

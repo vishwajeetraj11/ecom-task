@@ -4,11 +4,11 @@ export const customFaker = new Faker({ locale: [en] });
 
 export const latestTrendsImages = [1, 2, 3, 4, 5].map(() => ({
     image: customFaker.image.urlLoremFlickr({
-        category: "fashion",
+        category: "hoodies",
         height: 300,
         width: 200,
     }),
-    title: customFaker.lorem.word(5),
+    title: customFaker.commerce.productName(),
 }));
 export const popularSuggestions = [1, 2, 3, 4, 5].map(() =>
     customFaker.commerce.productAdjective()

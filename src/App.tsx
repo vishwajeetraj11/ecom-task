@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <SearchInput />
-      <h3 className={"searchResultsLabel"}>SearchResults</h3>
+      <h3 className={"searchResultsLabel"}>Search Results</h3>
       <div className="searchFilterResultContainer">
         <SearchFilters />
         <SearchResults />

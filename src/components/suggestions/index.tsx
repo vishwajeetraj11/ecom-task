@@ -26,6 +26,7 @@ const Suggestions = (props: Props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <div
       id="searchSuggestionContainer"
@@ -35,7 +36,7 @@ const Suggestions = (props: Props) => {
       <div className={suggestionStyles.latestTrendsContainer}>
         {latestTrendsImages.map(({ image, title }) => {
           return (
-            <div className="" key={image}>
+            <div key={image}>
               <img src={image} />
               <p>{title}</p>
             </div>

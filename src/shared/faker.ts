@@ -10,6 +10,5 @@ export const latestTrendsImages = [1, 2, 3, 4, 5].map(() => ({
     }),
     title: customFaker.commerce.productName(),
 }));
-export const popularSuggestions = [1, 2, 3, 4, 5].map(() =>
-    customFaker.commerce.productAdjective()
-);
+
+export const popularSuggestion = ["Granite", "Unbranded", "Handmade", "Cotton", "Hat"];

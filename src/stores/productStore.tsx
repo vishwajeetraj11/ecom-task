@@ -46,13 +46,33 @@ const useProductStore = create<IProductStore>((set, get) => ({
     const { brand, price, rating } = activeFilters;
     const { activeFilters: currentActiveFilters, searchResults } = get();
     const filteredResults = searchResults.filter((result) => {
-      const isBrandMatch = brand?.includes(result.title.split(" ")[0]);
-      const isPriceMatch = price?.includes(result.discountedPrice.toString());
-      const isRatingMatch = rating?.includes(result.rating.toString());
-      return isBrandMatch && isPriceMatch && isRatingMatch;
+      // const isPriceMatch = price?.includes(result.discountedPrice.toString());
+      let isRatingMatch;
+      if (rating && rating?.length > 0) {
+        isRatingMatch = rating?.includes(result.rating.toString() + "-star");
+      }
+      let isPriceMatch;
+      if (price && price?.length > 0) {
+        if (price.includes("under-500")) {
+          isPriceMatch = result.discountedPrice < 500;
+        } else if (price.includes("100-to-3000")) {
+          isPriceMatch =
+            result.discountedPrice >= 100 && result.discountedPrice < 3000;
+        }
+      }
+      if (
+        typeof isRatingMatch === "undefined" &&
+        typeof isPriceMatch === "undefined"
+      ) {
+        return true;
+      } else if (typeof isRatingMatch === "undefined") {
+        return isPriceMatch;
+      } else if (typeof isPriceMatch === "undefined") {
+        return isRatingMatch;
+      }
     });
     set({
-      filteredResults,
+      filteredResults: filteredResults.slice(0, 20),
       activeFilters: {
         brand: brand ?? currentActiveFilters.brand,
         price: price ?? currentActiveFilters.price,

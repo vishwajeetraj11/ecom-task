@@ -29,19 +29,19 @@ const SearchFilters = () => {
 
   const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, id } = e.target;
-    const [filterType, filterName] = id.split("-") as [
+    const [filterType, ...filterName] = id.split("-") as [
       "brand" | "price" | "rating",
       string
     ];
 
     if (checked) {
       setActiveFilters({
-        [filterType]: [...activeFilters[filterType], filterName],
+        [filterType]: [...activeFilters[filterType], filterName.join("-")],
       });
     } else {
       setActiveFilters({
         [filterType]: activeFilters[filterType].filter(
-          (filter) => filter !== filterName
+          (filter) => filter !== filterName.join("-")
         ),
       });
     }

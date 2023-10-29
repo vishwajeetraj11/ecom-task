@@ -9,6 +9,7 @@ export interface IProduct {
   rating: number;
   ratingsCount: number;
   id: string;
+  brand: "mango" | "h&m";
 }
 interface IProductStore {
   query: string;
@@ -44,9 +45,14 @@ const useProductStore = create<IProductStore>((set, get) => ({
     rating?: string[];
   }) => {
     const { brand, price, rating } = activeFilters;
+
     const { activeFilters: currentActiveFilters, searchResults } = get();
     const filteredResults = searchResults.filter((result) => {
-      // const isPriceMatch = price?.includes(result.discountedPrice.toString());
+      let isBrandMatch;
+      if (brand && brand?.length > 0) {
+        isBrandMatch = brand?.includes(result.brand);
+      }
+
       let isRatingMatch;
       if (rating && rating?.length > 0) {
         isRatingMatch = rating?.includes(result.rating.toString() + "-star");
@@ -62,14 +68,33 @@ const useProductStore = create<IProductStore>((set, get) => ({
       }
       if (
         typeof isRatingMatch === "undefined" &&
+        typeof isBrandMatch === "undefined" &&
         typeof isPriceMatch === "undefined"
       ) {
         return true;
-      } else if (typeof isRatingMatch === "undefined") {
-        return isPriceMatch;
-      } else if (typeof isPriceMatch === "undefined") {
+      } else if (
+        typeof isRatingMatch === "undefined" &&
+        typeof isPriceMatch === "undefined"
+      ) {
+        return isBrandMatch;
+      } else if (
+        typeof isBrandMatch === "undefined" &&
+        typeof isPriceMatch === "undefined"
+      ) {
         return isRatingMatch;
+      } else if (
+        typeof isBrandMatch === "undefined" &&
+        typeof isRatingMatch === "undefined"
+      ) {
+        return isPriceMatch;
+      } else if (typeof isRatingMatch === "undefined") {
+        return isBrandMatch && isPriceMatch;
+      } else if (typeof isBrandMatch === "undefined") {
+        return isRatingMatch && isPriceMatch;
+      } else if (typeof isPriceMatch === "undefined") {
+        return isRatingMatch && isBrandMatch;
       }
+      return isRatingMatch && isBrandMatch && isPriceMatch;
     });
     set({
       filteredResults: filteredResults.slice(0, 20),
@@ -87,6 +112,7 @@ const useProductStore = create<IProductStore>((set, get) => ({
       height: 250,
       width: 200,
     }),
+    brand: Math.random() > 0.5 ? "mango" : "h&m",
     discountedPrice: customFaker.number.int({ min: 100, max: 800 }),
     price: customFaker.number.int({ min: 200, max: 1000 }),
     rating: customFaker.number.int({ min: 1, max: 5 }),

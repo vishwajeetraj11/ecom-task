@@ -28,6 +28,7 @@ interface IProductStore {
   setSearchResults: (searchResults: IProduct[]) => void;
   filteredResults: IProduct[];
   setFilteredResults: (filteredResults: IProduct[]) => void;
+  onSearch: () => void;
 }
 
 const useProductStore = create<IProductStore>((set, get) => ({
@@ -97,7 +98,7 @@ const useProductStore = create<IProductStore>((set, get) => ({
       return isRatingMatch && isBrandMatch && isPriceMatch;
     });
     set({
-      filteredResults: filteredResults.slice(0, 20),
+      filteredResults: filteredResults.slice(0, 50),
       activeFilters: {
         brand: brand ?? currentActiveFilters.brand,
         price: price ?? currentActiveFilters.price,
@@ -122,6 +123,20 @@ const useProductStore = create<IProductStore>((set, get) => ({
   setSearchResults: (searchResults: IProduct[]) => set({ searchResults }),
   filteredResults: [],
   setFilteredResults: (filteredResults: IProduct[]) => set({ filteredResults }),
+  onSearch: () => {
+    const { searchResults, query, setFilteredResults, setSuggestionVisible } =
+      get();
+    const filteredResults = searchResults
+      .filter(
+        (result) =>
+          result.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+      .slice(0, 50);
+    setFilteredResults(filteredResults);
+    if (filteredResults.length) {
+      setSuggestionVisible(false);
+    }
+  },
 }));
 
 export default useProductStore;

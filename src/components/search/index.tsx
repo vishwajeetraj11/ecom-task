@@ -11,20 +11,8 @@ const SearchInput = (props: Props) => {
     setQuery,
     setSuggestionVisible,
     isSuggestionVisible,
-    setFilteredResults,
-    searchResults,
+    onSearch,
   } = useProductStore();
-
-  const onSearch = () => {
-    const filteredResults = searchResults
-      .filter(
-        (result) =>
-          result.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      )
-      .slice(0, 20);
-    setFilteredResults(filteredResults);
-    setSuggestionVisible(false);
-  };
 
   return (
     <div className={searchStyles.searchContainer}>
@@ -33,6 +21,7 @@ const SearchInput = (props: Props) => {
           onFocus={() => {
             setSuggestionVisible(true);
           }}
+          id="searchInput"
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

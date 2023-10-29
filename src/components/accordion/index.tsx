@@ -22,7 +22,9 @@ const Accordion = ({ children, title, isOpen, toggleAccordion }: Props) => {
           {isOpen ? <BiChevronUp /> : <BiChevronDown />}
         </div>
       </button>
-      <div className={accordionStyles.accordionContent}>{children}</div>
+      <div className={accordionStyles.accordionContent}>
+        {isOpen ? children : null}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ type Props = {
   price: number;
   rating: number;
   ratingsCount: number;
-  id: number;
+  id: string;
 };
 
 const SearchCard = ({

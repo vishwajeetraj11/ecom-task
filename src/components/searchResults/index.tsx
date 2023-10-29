@@ -17,7 +17,7 @@ const SearchResults = (props: Props) => {
     price: customFaker.number.int({ min: 200, max: 1000 }),
     rating: customFaker.number.int({ min: 1, max: 5 }),
     ratingsCount: customFaker.number.int({ min: 20, max: 200 }),
-    id: 1,
+    id: customFaker.string.uuid(),
   }));
   return (
     <div className={searchResultsStyles.searchResultsContainer}>

@@ -3,10 +3,10 @@ import SearchCard from "../searchCard";
 import { customFaker } from "../../shared/faker";
 
 const SearchResults = () => {
-  const searchResults = [1, 2, 3, 4, 5, 6, 7, 8].map(() => ({
+  const searchResults = Array.from(Array(100).keys()).map(() => ({
     title: customFaker.commerce.productName(),
     image: customFaker.image.urlLoremFlickr({
-      category: "fashion",
+      category: "hoodie",
       height: 250,
       width: 200,
     }),
